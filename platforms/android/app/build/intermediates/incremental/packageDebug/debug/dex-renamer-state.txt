@@ -1,0 +1,4 @@
+#Tue Mar 09 10:59:24 EET 2021
+base.0=/Users/antony/Desktop/test-ionic/testApp/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="content">
+    <div>
+      <img src="{{item?.image}}" alt="">
+    </div>
+
+    <div>
+      <h1>{{item?.name}}</h1>
+      <p>{{item?.description}}</p>
+    </div>
+
+    <div class="content__buttons">
+      <ion-button (click)="chooseVariant('100', 'price', false)">100$</ion-button>
+      <ion-button (click)="chooseVariant('10', 'price', false)">10$</ion-button>
+      <ion-button (click)="chooseVariant('2', 'qty', false)">2</ion-button>
+      <ion-button (click)="chooseVariant('10', 'qty', false)">10</ion-button>
+    </div>
+    
+    <div class="content__inputs">
+      <ion-item>
+        <ion-label position="stacked">Amount, $</ion-label>
+        <ion-input type="number" (ionInput)="chooseVariant($event.target, 'price', true)" value="{{price}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Quantity</ion-label>
+        <ion-input type="number" (ionInput)="chooseVariant($event.target, 'qty', true)" value="{{qty}}"></ion-input>
+      </ion-item>
+    </div>
+    
+  </div>
+
+</ion-content>

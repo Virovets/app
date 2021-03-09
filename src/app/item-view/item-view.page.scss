@@ -1,0 +1,20 @@
+.content{
+  padding: 20px;
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__inputs {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  p {
+    color: #b7b7b7 !important;
+  }
+}

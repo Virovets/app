@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Searchbar</ion-title>
+    <ion-searchbar (ionChange)="search($event)" value="{{searchValue}}" (ionClear)="clearSearchValue()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <div id="container">
+    <ion-list lines="inset">
+      <ion-item *ngFor="let item of dataCopy ? dataCopy : data" [routerLink]="['/item-view', item.sku]">
+        <ion-avatar slot="start">
+          <img src="{{item.image}}" alt="">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{item.name}}</h2>
+          <p>{{item.description}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
