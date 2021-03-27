@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ItemInterface} from '../interfaces/item-interface';
 import {DataService} from '../data.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-item-view',
   templateUrl: './item-view.page.html',
   styleUrls: ['./item-view.page.scss'],
 })
-export class ItemViewPage implements OnInit {
+export class ItemViewPage implements OnInit, OnDestroy {
 
   public item: ItemInterface;
   public price = '';
   public qty = null;
+  private dataSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               public dataService: DataService) {
@@ -20,7 +22,7 @@ export class ItemViewPage implements OnInit {
 
   ngOnInit() {
     const itemSku = +this.route.snapshot.params.sku;
-    this.dataService.getItems().subscribe((res: ItemInterface[]) => {
+    this.dataSubscription = this.dataService.getItems().subscribe((res: ItemInterface[]) => {
       this.item = res.find(item => item.sku === itemSku);
     });
   }
@@ -37,6 +39,10 @@ export class ItemViewPage implements OnInit {
         this.price = String(Math.round(this.item.price * value));
         break;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
   }
 
 }
